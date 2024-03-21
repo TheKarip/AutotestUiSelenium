@@ -8,7 +8,7 @@ public class MainPageTest extends BaseTest {
 
     @Test
     public void testLoginForm() {
-        mainPage.selectLoginForm().fillLoginForm();
+        mainPage.selectLoginForm().fillLoginForm().createPublicRepository();
     }
 
     @ParameterizedTest

@@ -7,4 +7,5 @@ public class Const {
     public static final String PASS = "poaksjJJ19";
     public static final String INCORRECT_PASS = "123fsdaASd";
     public static final String URL = "https://github.com/";
+    public static final String TOKEN = "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";
 }
