@@ -1,6 +1,5 @@
 package org.example.tests;
 
-import org.example.common.ArgumentsForTest;
 import org.example.common.Driver;
 import org.example.pages.MainPage;
 import org.junit.jupiter.api.*;
@@ -16,7 +15,7 @@ public class BaseTest {
     WebDriver driver;
     MainPage mainPage;
 
-    @BeforeEach
+   @BeforeEach
     void setUp() {
         driver = Driver.getDriver();
         mainPage = new MainPage();

@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.example.common.API.ApiTest;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,14 +33,14 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    public HomePage fillLoginForm() {
+    public MainPage fillLoginForm() {
         wait.until(d -> loginField.isDisplayed());
         wait.until(d -> passField.isDisplayed());
         loginField.sendKeys(EMAIL);
         passField.sendKeys(PASS, Keys.ENTER);
         wait.until(d -> checkHomePage.isDisplayed());
         assertTrue(checkHomePage.isDisplayed(), "Home page didn't load");
-        return new HomePage();
+        return this;
     }
 
     public void checkIncorrectData(String email, String pass) {
