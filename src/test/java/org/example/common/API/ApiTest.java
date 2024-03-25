@@ -1,34 +1,35 @@
 package org.example.common.API;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.common.ApiClient;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
-import static org.example.common.Const.*;
-import static org.hamcrest.Matchers.equalTo;
+import static io.restassured.http.Method.DELETE;
+import static io.restassured.http.Method.POST;
+import static org.example.common.Const.OWNER;
+import static org.example.common.Const.REPO_NAME;
 
 public class ApiTest {
 
-    private final String getReposPerName = String.format("/repos/%s/%s", OWNER, REPO_NAME);
-    private final String createRepos = String.format("/user/repos", OWNER);
-    private ObjectMapper mapper = new ObjectMapper();
+    private final static String CREATE_REPO = "/user/repos";
+    private final static String DELETE_REPO = String.format("/repos/%s/%s", OWNER, REPO_NAME);
 
+    private final ApiClient apiClient = new ApiClient();
+
+    @Test
     public void createPublicRepository() {
         Map<String, String> param = new HashMap<>();
         param.put("name", REPO_NAME);
         param.put("description", "Created with assured API");
 
-        given()
-                .header("Authorization", "Bearer " + TOKEN2)
-                .header("X-GitHub-Api-Version", "2022-11-28")
-                .baseUri(URL)
-                .when()
-                .body(param)
-                .post(createRepos)
-                .then().log().all()
-                .body("name", equalTo(REPO_NAME));
+        apiClient.setBody(param).build().
+                sendRequest(POST,201, CREATE_REPO);
+    }
 
+    @Test
+    public void deleteRepositoryHasName() {
+        apiClient.build().sendRequest(DELETE,204, DELETE_REPO);
     }
 }
