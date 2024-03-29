@@ -22,19 +22,26 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//h2[contains(text(),'Home')]")
     WebElement checkHomePage;
 
+    @FindBy(xpath = "//div[@class='js-flash-alert']")
+    WebElement incorrectAlert;
+
     public MainPage selectLoginForm() {
         wait.until(d -> loginForm.isDisplayed());
         loginForm.click();
         return this;
     }
 
-    public MainPage fillLoginForm() {
+    public MainPage fillLoginForm(String email, String pass) {
         wait.until(d -> loginField.isDisplayed());
         wait.until(d -> passField.isDisplayed());
-        loginField.sendKeys(EMAIL);
-        passField.sendKeys(PASS, Keys.ENTER);
-        wait.until(d -> checkHomePage.isDisplayed());
-        assertTrue(checkHomePage.isDisplayed());
+        loginField.sendKeys(email);
+        passField.sendKeys(pass, Keys.ENTER);
+        if (email.equals(EMAIL) && pass.equals(PASS)) {
+            wait.until(d -> checkHomePage.isDisplayed());
+            assertTrue(checkHomePage.isDisplayed());
+        }
+        wait.until(d -> incorrectAlert.isDisplayed());
+        assertTrue(incorrectAlert.isDisplayed());
         return this;
     }
 }
