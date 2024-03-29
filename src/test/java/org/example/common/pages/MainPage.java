@@ -39,6 +39,7 @@ public class MainPage extends BasePage {
         if (email.equals(EMAIL) && pass.equals(PASS)) {
             wait.until(d -> checkHomePage.isDisplayed());
             assertTrue(checkHomePage.isDisplayed());
+            return this;
         }
         wait.until(d -> incorrectAlert.isDisplayed());
         assertTrue(incorrectAlert.isDisplayed());
