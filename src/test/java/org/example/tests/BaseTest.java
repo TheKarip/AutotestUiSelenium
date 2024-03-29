@@ -1,30 +1,36 @@
 package org.example.tests;
 
-import org.example.common.Driver;
-import org.example.pages.MainPage;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
+import org.example.common.annotation.Api;
+import org.example.common.controller.ReposController;
+import org.example.common.controller.UserController;
+import org.example.common.extension.ApiExtension;
+import org.example.common.pages.MainPage;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.example.common.Const.URL;
+import static org.example.common.Const.HOME_PAGE_URL;
+import static org.example.common.DriverAssist.close;
+import static org.example.common.DriverAssist.open;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ExtendWith(ApiExtension.class)
 public class BaseTest {
-    public BaseTest() {
+
+    ReposController reposController = new ReposController();
+    static MainPage mainPage = new MainPage();
+
+    @Test
+    @Api(name ="TestRepo123", isPrivate = "false")
+    void createPublicRepository() {
+       var repoList = new UserController().getRepositoryList();
+        Assertions.assertEquals(1, repoList.size());
     }
 
-    WebDriver driver;
-    MainPage mainPage;
-
-   @BeforeEach
-    void setUp() {
-        driver = Driver.getDriver();
-        mainPage = new MainPage();
-        driver.get(URL);
-        driver.manage().window().fullscreen();
+    @Test
+    void checkIncorrectFill() {
+        open(HOME_PAGE_URL);
+        mainPage.selectLoginForm().fillLoginForm();
+        close();
     }
 
-    @AfterAll
-    void close() {
-        driver.quit();
-    }
 }

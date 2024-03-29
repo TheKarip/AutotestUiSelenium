@@ -7,7 +7,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 import static org.example.common.Const.TOKEN;
-import static org.example.common.Const.URL;
+import static org.example.common.Const.API_URL;
 
 public class ApiClient {
 
@@ -19,14 +19,14 @@ public class ApiClient {
         return given()
                 .spec(requestSpecification)
                 .request(method, path, params)
-                .then().log().status()
+                .then()
                 .statusCode(expectedStatusCode)
                 .extract().response();
     }
 
     public ApiClient build() {
         requestSpecification = requestSpecBuilder
-                .setBaseUri(URL)
+                .setBaseUri(API_URL)
                 .addHeader("Authorization", "Bearer " + TOKEN)
                 .addHeader("X-GitHub-Api-Version", "2022-11-28")
                 .build();
