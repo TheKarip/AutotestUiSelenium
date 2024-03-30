@@ -6,8 +6,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
-import static org.example.common.Const.TOKEN;
-import static org.example.common.Const.API_URL;
+import static org.example.common.properties.Properties.TOKEN;
+import static org.example.common.properties.Properties.API_URL;
 
 public class ApiClient {
 

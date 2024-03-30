@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.example.common.Const.*;
+import static org.example.common.properties.Properties.*;
 import static org.example.common.DriverAssist.close;
 import static org.example.common.DriverAssist.open;
 
@@ -23,7 +23,7 @@ import static org.example.common.DriverAssist.open;
 public class BaseTest {
 
     ReposController reposController = new ReposController();
-    static MainPage mainPage = new MainPage();
+    MainPage mainPage = new MainPage();
 
     @Test
     @Api(name = "TestRepo123", isPrivate = "false")
@@ -52,4 +52,5 @@ public class BaseTest {
 
         );
     }
+
 }

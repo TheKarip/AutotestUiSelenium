@@ -4,8 +4,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.example.common.Const.EMAIL;
-import static org.example.common.Const.PASS;
+import static org.example.common.properties.Properties.EMAIL;
+import static org.example.common.properties.Properties.PASS;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainPage extends BasePage {
