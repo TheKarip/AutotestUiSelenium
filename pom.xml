@@ -16,6 +16,8 @@
         <junit.version>5.10.2</junit.version>
         <rest.assured.version>5.4.0</rest.assured.version>
         <jakson.version>2.17.0</jakson.version>
+        <lombok.version>1.18.32</lombok.version>
+        <webDriverManage.version>5.7.0</webDriverManage.version>
     </properties>
 
     <dependencies>
@@ -46,6 +48,17 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jakson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webDriverManage.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

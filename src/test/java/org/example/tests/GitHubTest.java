@@ -5,7 +5,6 @@ import org.example.common.controller.ReposController;
 import org.example.common.controller.UserController;
 import org.example.common.extension.ApiExtension;
 import org.example.common.pages.MainPage;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,33 +14,33 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.example.common.properties.Properties.*;
-import static org.example.common.DriverAssist.close;
-import static org.example.common.DriverAssist.open;
+import static org.example.common.properties.Properties.EMAIL;
+import static org.example.common.properties.Properties.PASS;
 
 @ExtendWith(ApiExtension.class)
-public class BaseTest {
+public class GitHubTest {
 
     ReposController reposController = new ReposController();
     MainPage mainPage = new MainPage();
 
     @Test
     @Api(name = "TestRepo123", isPrivate = "false")
-    void createPublicRepository() {
+    void createPublicRepositoryTest() {
         var repoList = new UserController().getRepositoryList();
         Assertions.assertEquals(1, repoList.size());
     }
 
-    @ParameterizedTest
-    @MethodSource("getArgumentsForLoginTest")
-    void checkFillLogin(String email, String pass) {
-        open(HOME_PAGE_URL);
-        mainPage.selectLoginForm().fillLoginForm(email, pass);
+    @Test
+    void correctLoginTest(String email, String pass) {
+        mainPage.selectLoginForm()
+                .loginWitchCorrectData(email, pass)
+                .userIsAuthorized();
     }
 
-    @AfterAll
-    static void closeDriver(){
-        close();
+    @ParameterizedTest
+    @MethodSource("getArgumentsForLoginTest")
+    void incorrectLoginTest(String email, String pass) {
+        mainPage.loginWitchIncorrectData(email, pass);
     }
 
     static public Stream<Arguments> getArgumentsForLoginTest() {
