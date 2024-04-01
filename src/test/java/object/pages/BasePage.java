@@ -1,6 +1,7 @@
-package org.example.common.pages;
+package object.pages;
 
-import org.example.common.Driver;
+import common.core.Driver;
+import common.core.properties.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -9,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.example.common.properties.Properties.TIMEOUT;
-
 public abstract class BasePage {
 
     protected WebDriver driver = Driver.getDriver();
@@ -18,7 +17,7 @@ public abstract class BasePage {
 
     public BasePage() {
         PageFactory.initElements(driver, this);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT), this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, Properties.TIMEOUT), this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Properties.TIMEOUT));
     }
 }

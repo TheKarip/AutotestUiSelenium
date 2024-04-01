@@ -1,9 +1,10 @@
-package org.example.tests;
+package tests;
 
-import org.example.common.annotation.Api;
-import org.example.common.controller.UserController;
-import org.example.common.extension.ApiExtension;
-import org.example.common.pages.MainPage;
+import common.core.properties.Properties;
+import common.annotation.Api;
+import object.controller.UserController;
+import tests.extension.ApiExtension;
+import object.pages.MainPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,9 +13,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
-
-import static org.example.common.properties.Properties.EMAIL;
-import static org.example.common.properties.Properties.PASS;
 
 @ExtendWith(ApiExtension.class)
 public class GitHubTest extends BaseTest {
@@ -29,7 +27,7 @@ public class GitHubTest extends BaseTest {
     @Test
     void correctLoginTest() {
         new MainPage().selectLoginForm()
-                .loginWitchCorrectData(EMAIL, PASS)
+                .loginWitchCorrectData(Properties.EMAIL, Properties.PASS)
                 .userIsAuthorized();
     }
 
@@ -42,7 +40,7 @@ public class GitHubTest extends BaseTest {
 
     static public Stream<Arguments> getArgumentsForLoginTest() {
         return Stream.of(
-                Arguments.of("f43241@fma.com", PASS),
+                Arguments.of("f43241@fma.com", Properties.PASS),
                 Arguments.of("POkdm@@gmail.com", "fds123AD")
         );
     }

@@ -1,8 +1,8 @@
-package org.example.common.controller;
+package object.controller;
 
+import common.core.ApiClient;
 import lombok.extern.java.Log;
-import org.example.common.ApiClient;
-import org.example.common.pojo.Repository;
+import object.pojo.Repository;
 
 import static io.restassured.http.Method.DELETE;
 import static io.restassured.http.Method.POST;

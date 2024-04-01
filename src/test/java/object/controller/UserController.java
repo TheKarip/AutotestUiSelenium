@@ -1,9 +1,9 @@
-package org.example.common.controller;
+package object.controller;
 
+import common.core.ApiClient;
 import lombok.extern.java.Log;
-import org.example.common.ApiClient;
-import org.example.common.pojo.Repository;
-import org.example.common.pojo.User;
+import object.pojo.Repository;
+import object.pojo.User;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package org.example.common.pages;
+package object.pages;
 
-import org.example.common.controller.UserController;
+import object.controller.UserController;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

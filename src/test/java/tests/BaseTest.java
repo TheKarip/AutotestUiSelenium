@@ -1,10 +1,9 @@
-package org.example.tests;
+package tests;
 
-import org.example.common.Driver;
+import common.core.properties.Properties;
+import common.core.Driver;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-
-import static org.example.common.properties.Properties.HOME_PAGE_URL;
 
 public abstract class BaseTest {
 
@@ -14,7 +13,7 @@ public abstract class BaseTest {
 
     @BeforeEach
     void setUp() {
-        Driver.loadApplication(HOME_PAGE_URL);
+        Driver.loadApplication(Properties.HOME_PAGE_URL);
     }
 
     @AfterAll

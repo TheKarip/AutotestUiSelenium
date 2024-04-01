@@ -1,6 +1,6 @@
-package org.example.common.annotation;
+package common.annotation;
 
-import org.example.common.extension.ApiExtension;
+import tests.extension.ApiExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.ElementType;

@@ -1,9 +1,8 @@
-package org.example.common;
+package common.core;
 
+import common.core.properties.Properties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-
-import static org.example.common.properties.Properties.BROWSER;
 
 public class Driver {
 
@@ -14,7 +13,7 @@ public class Driver {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            initBrowser(BROWSER);
+            initBrowser(Properties.BROWSER);
         }
         driver.manage().window().fullscreen();
         return driver;

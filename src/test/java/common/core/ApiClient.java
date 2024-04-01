@@ -1,13 +1,12 @@
-package org.example.common;
+package common.core;
 
+import common.core.properties.Properties;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
-import static org.example.common.properties.Properties.TOKEN;
-import static org.example.common.properties.Properties.API_URL;
 
 public class ApiClient {
 
@@ -26,8 +25,8 @@ public class ApiClient {
 
     public ApiClient build() {
         requestSpecification = requestSpecBuilder
-                .setBaseUri(API_URL)
-                .addHeader("Authorization", "Bearer " + TOKEN)
+                .setBaseUri(Properties.API_URL)
+                .addHeader("Authorization", "Bearer " + Properties.TOKEN)
                 .addHeader("X-GitHub-Api-Version", "2022-11-28")
                 .build();
         return this;

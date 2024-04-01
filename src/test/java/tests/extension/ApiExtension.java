@@ -1,11 +1,11 @@
-package org.example.common.extension;
+package tests.extension;
 
 import lombok.SneakyThrows;
-import org.example.common.annotation.Api;
-import org.example.common.controller.ReposController;
-import org.example.common.controller.UserController;
-import org.example.common.pojo.Repository;
-import org.example.common.pojo.User;
+import object.controller.ReposController;
+import object.controller.UserController;
+import common.annotation.Api;
+import object.pojo.Repository;
+import object.pojo.User;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

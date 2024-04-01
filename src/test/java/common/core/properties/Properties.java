@@ -1,6 +1,6 @@
-package org.example.common.properties;
+package common.core.properties;
 
-import static org.example.common.properties.PropertiesLoader.get;
+import static common.core.properties.PropertiesLoader.get;
 
 public class Properties {
 
