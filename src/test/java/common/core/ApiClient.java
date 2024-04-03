@@ -1,6 +1,7 @@
 package common.core;
 
 import common.core.properties.Properties;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -28,6 +29,7 @@ public class ApiClient {
                 .setBaseUri(Properties.API_URL)
                 .addHeader("Authorization", "Bearer " + Properties.TOKEN)
                 .addHeader("X-GitHub-Api-Version", "2022-11-28")
+                .addFilter(new AllureRestAssured())
                 .build();
         return this;
     }

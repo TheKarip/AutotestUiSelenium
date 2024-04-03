@@ -1,9 +1,9 @@
 package tests.extension;
 
+import common.annotation.Api;
 import lombok.SneakyThrows;
 import object.controller.ReposController;
 import object.controller.UserController;
-import common.annotation.Api;
 import object.pojo.Repository;
 import object.pojo.User;
 import org.junit.jupiter.api.extension.AfterEachCallback;
@@ -22,10 +22,8 @@ public class ApiExtension implements BeforeEachCallback, AfterEachCallback {
                 extensionContext.getTestMethod(), Api.class);
         if (annotation.isPresent()) {
             Api repAnnotation = annotation.get();
-            Repository repository = new Repository(
-                    repAnnotation.name(), repAnnotation.isPrivate()
-            );
-            new ReposController().createPublicRepository(repository);
+            new ReposController().createPublicRepository(Repository.builder()
+                    .name(repAnnotation.name()).isPrivate(repAnnotation.isPrivate()).build());
         }
     }
 
@@ -36,11 +34,9 @@ public class ApiExtension implements BeforeEachCallback, AfterEachCallback {
                 extensionContext.getTestMethod(), Api.class);
         if (annotation.isPresent()) {
             Api repAnnotation = annotation.get();
-            Repository repository = new Repository(
-                    repAnnotation.name(), repAnnotation.isPrivate()
-            );
             User user = new UserController().getUserData();
-            new ReposController().deleteRepositoryHasName(user.getLogin(), repository.getName());
+            new ReposController().deleteRepositoryHasName(user.getLogin(), Repository.builder()
+                    .name(repAnnotation.name()).build().getName());
         }
     }
 }

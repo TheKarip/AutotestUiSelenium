@@ -2,16 +2,13 @@ package object.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor
+@Data
+@Builder
 @AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor
 public class User {
     private String login;
     private String url;
