@@ -3,7 +3,9 @@ package tests;
 import common.core.Driver;
 import common.core.properties.Properties;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+
 
 public abstract class BaseTest {
 
@@ -15,6 +17,11 @@ public abstract class BaseTest {
     void setUp() {
         Driver.getDriver();
         Driver.loadApplication(Properties.HOME_PAGE_URL);
+    }
+
+    @AfterEach
+    void cleanCoockie() {
+        Driver.cleanCookie();
     }
 
     @AfterAll

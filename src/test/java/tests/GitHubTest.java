@@ -1,35 +1,22 @@
 package tests;
 
 import common.annotation.Api;
-import common.core.properties.Properties;
 import io.qameta.allure.Description;
-import io.qameta.allure.Owner;
 import object.controller.UserController;
 import object.pages.MainPage;
 import object.pojo.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import tests.credentials.UserCredentials;
 import tests.extension.ApiExtension;
-
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(ApiExtension.class)
-@Owner("me")
-public class GitHubTest  {
-
-    UserCredentials userCred = UserCredentials.builder()
-            .email("f")
-            .password("1")
-            .build();
-
-    UserCredentials userCorrect = UserCredentials.builder()
-            .email(Properties.EMAIL).password(Properties.PASS).build();
+public class GitHubTest extends BaseTest{
 
     @Test
     @Api(name = "TestRepo123", isPrivate = "false")
@@ -41,28 +28,21 @@ public class GitHubTest  {
     }
 
     @Test
-    @Description("Correct login test")
     void correctLoginTest() {
         User user = new UserController().getUserData();
-        String login = new MainPage().selectLoginForm().loginCorrectData(userCorrect).userIsAuthorized();
+        String login = new MainPage().selectLoginForm()
+                .loginCorrectData(UserCredentials.getCorrectUserData())
+                .userIsAuthorized();
         assertEquals(user.getLogin(), login, "Login does not match");
     }
 
     @ParameterizedTest
-    @MethodSource("getArgumentsForLoginTest")
-@Description("Incorrect login test")
-    void incorrectLoginTest(String email, String pass) {
+    @MethodSource("tests.credentials.UserCredentials#getIncrorectUserData")
+    void incorrectLoginTest(UserCredentials user) {
         Boolean alertIsDisplayed = new MainPage().selectLoginForm()
-                .enteringLoginAndPassword(userCred)
+                .enteringLoginAndPassword(user)
                 .clickTheSingInButton()
                 .alertDetection();
         assertTrue(alertIsDisplayed);
-    }
-
-    static public Stream<Arguments> getArgumentsForLoginTest() {
-        return Stream.of(
-                Arguments.of("f43241@fma.com", Properties.PASS),
-                Arguments.of("POkdm@@gmail.com", "fds123AD")
-        );
     }
 }

@@ -15,7 +15,7 @@ public class Driver {
         if (driver == null) {
             initBrowser(Properties.BROWSER);
         }
-        driver.manage().window().fullscreen();
+        driver.manage().window().maximize();
         return driver;
     }
 
@@ -26,6 +26,10 @@ public class Driver {
             case "IE" -> driver = WebDriverManager.iedriver().create();
             default -> throw new RuntimeException("Browser not selected");
         }
+    }
+
+    public static void cleanCookie() {
+        driver.manage().deleteAllCookies();
     }
 
     public static void loadApplication(String url) {

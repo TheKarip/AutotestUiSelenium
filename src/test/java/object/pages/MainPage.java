@@ -3,7 +3,7 @@ package object.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.UserCredentials;
+import tests.credentials.UserCredentials;
 
 public class MainPage extends BasePage {
 

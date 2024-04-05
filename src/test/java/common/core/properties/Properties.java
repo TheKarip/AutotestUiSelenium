@@ -14,4 +14,7 @@ public class Properties {
     public static final String BROWSER = get("browser");
 
     public static final int TIMEOUT = Integer.parseInt(get("timeout"));
+
+    public static final String INCORRECT_EMAIL = get("incorrect.user.email");
+    public static final String INCORRECT_PASS = get("incorrect.user.password");
 }

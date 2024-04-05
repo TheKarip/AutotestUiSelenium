@@ -13,14 +13,12 @@ public class ReposController {
 
     public void createPublicRepository(Repository repository) {
         new ApiClient().setBody(repository).build().
-                sendRequest(POST, 201, CREATE_REPO)
-                .then().log().all();
+                sendRequest(POST, 201, CREATE_REPO);
     }
 
     public void deleteRepositoryHasName(String owner, String repoName) {
         new ApiClient().build().sendRequest(DELETE, 204,
-                DELETE_REPO, owner, repoName)
-                .then().log().all();
+                DELETE_REPO, owner, repoName);
     }
 
 }
