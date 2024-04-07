@@ -20,7 +20,7 @@ public abstract class BaseTest {
     }
 
     @AfterEach
-    void cleanCoockie() {
+    void cleanCookie() {
         Driver.cleanCookie();
     }
 

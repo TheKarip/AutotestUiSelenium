@@ -1,7 +1,6 @@
 package tests;
 
 import common.annotation.Api;
-import io.qameta.allure.Description;
 import object.controller.UserController;
 import object.pages.MainPage;
 import object.pojo.User;
@@ -11,16 +10,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import tests.credentials.UserCredentials;
 import tests.extension.ApiExtension;
+import tests.listener.TestListener;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(ApiExtension.class)
+@ExtendWith({ApiExtension.class, TestListener.class})
 public class GitHubTest extends BaseTest{
 
     @Test
     @Api(name = "TestRepo123", isPrivate = "false")
-    @Description("api test")
     void createPublicRepositoryTest() {
         var repoList = new UserController().getRepositoryList();
         assertEquals(1, repoList.size(),
@@ -37,11 +36,11 @@ public class GitHubTest extends BaseTest{
     }
 
     @ParameterizedTest
-    @MethodSource("tests.credentials.UserCredentials#getIncrorectUserData")
+    @MethodSource("tests.credentials.UserCredentials#getIncorrectUserData")
     void incorrectLoginTest(UserCredentials user) {
         Boolean alertIsDisplayed = new MainPage().selectLoginForm()
-                .enteringLoginAndPassword(user)
-                .clickTheSingInButton()
+                .fillLoginAndPassword(user)
+                .clickSingInButton()
                 .alertDetection();
         assertTrue(alertIsDisplayed);
     }

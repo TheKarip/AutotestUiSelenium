@@ -1,5 +1,6 @@
 package object.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,29 +23,31 @@ public class MainPage extends BasePage {
     @FindBy(css = ".js-flash-alert")
     WebElement incorrectAlert;
 
+    @Step("Open login form")
     public MainPage selectLoginForm() {
         wait.until(ExpectedConditions.visibilityOf(loginForm)).click();
         return this;
     }
 
-    public MainPage enteringLoginAndPassword(UserCredentials user) {
+    @Step("Enter login and password")
+    public MainPage fillLoginAndPassword(UserCredentials user) {
         loginField.sendKeys(user.getEmail());
         passField.sendKeys(user.getPassword());
         return this;
     }
 
-    public MainPage clickTheSingInButton() {
+    public MainPage clickSingInButton() {
         singInButton.click();
         return this;
     }
-
+    @Step("Error display for incorrect login data")
     public Boolean alertDetection() {
         return incorrectAlert.isDisplayed();
     }
 
     public HomePage loginCorrectData(UserCredentials user) {
-        enteringLoginAndPassword(user);
-        clickTheSingInButton();
+        fillLoginAndPassword(user);
+        clickSingInButton();
         return new HomePage();
     }
 }

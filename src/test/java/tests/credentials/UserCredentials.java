@@ -24,7 +24,7 @@ public class UserCredentials {
                 .build();
     }
 
-    public static Stream<UserCredentials> getIncrorectUserData() {
+    public static Stream<UserCredentials> getIncorrectUserData() {
         return Stream.of(
               UserCredentials.builder().email(EMAIL).password(INCORRECT_PASS).build(),
                 UserCredentials.builder().email(INCORRECT_EMAIL).password(INCORRECT_PASS).build()
