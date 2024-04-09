@@ -1,22 +1,26 @@
 package tests;
 
 import common.core.Driver;
-import common.core.properties.Properties;
+import common.core.properties.PropertiesLoader;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+
+import static common.core.properties.Properties.HOME_PAGE_URL;
 
 
 public abstract class BaseTest {
 
-    static {
-        Driver.getDriver();
+    @BeforeAll
+   static void ab() {
+        PropertiesLoader.getInstance().loadProperties();
     }
 
     @BeforeEach
     void setUp() {
         Driver.getDriver();
-        Driver.loadApplication(Properties.HOME_PAGE_URL);
+        Driver.loadApplication(System.getProperty(HOME_PAGE_URL));
     }
 
     @AfterEach
@@ -25,7 +29,7 @@ public abstract class BaseTest {
     }
 
     @AfterAll
-   static void closeDriver() {
+    static void closeDriver() {
         Driver.closeDriver();
     }
 }

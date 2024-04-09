@@ -19,15 +19,15 @@ public class UserCredentials {
 
     public static UserCredentials getCorrectUserData() {
         return UserCredentials.builder()
-                .email(EMAIL)
-                .password(PASS)
+                .email(System.getProperty(EMAIL))
+                .password(System.getProperty(PASS))
                 .build();
     }
 
     public static Stream<UserCredentials> getIncorrectUserData() {
         return Stream.of(
-              UserCredentials.builder().email(EMAIL).password(INCORRECT_PASS).build(),
-                UserCredentials.builder().email(INCORRECT_EMAIL).password(INCORRECT_PASS).build()
+              UserCredentials.builder().email(System.getProperty(EMAIL)).password(System.getProperty(INCORRECT_PASS)).build(),
+                UserCredentials.builder().email(System.getProperty(INCORRECT_EMAIL)).password(System.getProperty(INCORRECT_EMAIL)).build()
         );
     }
 

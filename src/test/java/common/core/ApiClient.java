@@ -1,12 +1,13 @@
 package common.core;
 
-import common.core.properties.Properties;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import static common.core.properties.Properties.API_URL;
+import static common.core.properties.Properties.TOKEN;
 import static io.restassured.RestAssured.given;
 
 public class ApiClient {
@@ -26,8 +27,8 @@ public class ApiClient {
 
     public ApiClient build() {
         requestSpecification = requestSpecBuilder
-                .setBaseUri(Properties.API_URL)
-                .addHeader("Authorization", "Bearer " + Properties.TOKEN)
+                .setBaseUri(System.getProperty(API_URL))
+                .addHeader("Authorization", "Bearer " + System.getProperty(TOKEN))
                 .addHeader("X-GitHub-Api-Version", "2022-11-28")
                 .addFilter(new AllureRestAssured())
                 .build();
