@@ -1,19 +1,19 @@
 package tests;
 
-import common.core.Driver;
-import common.core.properties.PropertiesLoader;
+import common.Driver;
+import common.properties.PropertiesLoader;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-import static common.core.properties.Properties.HOME_PAGE_URL;
+import static common.properties.Properties.HOME_PAGE_URL;
 
 
 public abstract class BaseTest {
 
     @BeforeAll
-   static void ab() {
+   static void loadProperties() {
         PropertiesLoader.getInstance().loadProperties();
     }
 

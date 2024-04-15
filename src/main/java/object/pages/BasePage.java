@@ -1,6 +1,6 @@
 package object.pages;
 
-import common.core.Driver;
+import common.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;

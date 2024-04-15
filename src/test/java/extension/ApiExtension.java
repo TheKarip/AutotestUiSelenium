@@ -1,9 +1,9 @@
-package tests.extension;
+package extension;
 
-import common.annotation.Api;
+import annotation.Api;
 import lombok.SneakyThrows;
-import object.controller.ReposController;
-import object.controller.UserController;
+import api.controller.ReposController;
+import api.controller.UserController;
 import object.pojo.Repository;
 import object.pojo.User;
 import org.junit.jupiter.api.extension.AfterEachCallback;

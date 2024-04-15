@@ -1,4 +1,4 @@
-package common.core.properties;
+package common.properties;
 
 public class Properties {
 

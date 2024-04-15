@@ -1,11 +1,9 @@
-package object.controller;
+package api.controller;
 
-import common.core.ApiClient;
+import api.ApiClient;
 import io.qameta.allure.Step;
+import io.restassured.http.Method;
 import object.pojo.Repository;
-
-import static io.restassured.http.Method.DELETE;
-import static io.restassured.http.Method.POST;
 
 public class ReposController {
 
@@ -15,12 +13,12 @@ public class ReposController {
     @Step("Create public repository")
     public void createPublicRepository(Repository repository) {
         new ApiClient().setBody(repository).build().
-                sendRequest(POST, 201, CREATE_REPO);
+                sendRequest(Method.POST, 201, CREATE_REPO);
     }
 
     @Step("Delete repository")
     public void deleteRepositoryHasName(String owner, String repoName) {
-        new ApiClient().build().sendRequest(DELETE, 204,
+        new ApiClient().build().sendRequest(Method.DELETE, 204,
                 DELETE_REPO, owner, repoName);
     }
 

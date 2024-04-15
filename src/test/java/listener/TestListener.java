@@ -1,6 +1,6 @@
-package tests.listener;
+package listener;
 
-import common.core.Driver;
+import common.Driver;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;

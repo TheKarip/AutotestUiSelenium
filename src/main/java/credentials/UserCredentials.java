@@ -1,4 +1,4 @@
-package tests.credentials;
+package credentials;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.stream.Stream;
 
-import static common.core.properties.Properties.*;
+import static common.properties.Properties.*;
 
 @Data
 @NoArgsConstructor

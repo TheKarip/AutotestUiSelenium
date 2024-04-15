@@ -1,9 +1,9 @@
-package common.core;
+package common;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
-import static common.core.properties.Properties.BROWSER;
+import static common.properties.Properties.BROWSER;
 
 public class Driver {
 

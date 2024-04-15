@@ -1,14 +1,14 @@
-package common.core;
+package api;
 
 import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import static common.core.properties.Properties.API_URL;
-import static common.core.properties.Properties.TOKEN;
-import static io.restassured.RestAssured.given;
+import static common.properties.Properties.API_URL;
+import static common.properties.Properties.TOKEN;
 
 public class ApiClient {
 
@@ -17,7 +17,7 @@ public class ApiClient {
 
 
     public Response sendRequest(Method method, int expectedStatusCode, String path, Object... params) {
-        return given()
+        return RestAssured.given()
                 .spec(requestSpecification)
                 .request(method, path, params)
                 .then()
